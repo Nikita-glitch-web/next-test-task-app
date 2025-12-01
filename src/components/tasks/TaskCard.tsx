@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TaskStatusBadge } from "./TaskStatusBadge";
 import { formatRelativeTime } from "@/lib/utils";
 import { Calendar } from "lucide-react";
+import Link from "next/link";
 
 interface TaskCardProps {
   task: Task;
@@ -10,15 +11,8 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task, onClick }: TaskCardProps) {
-  const handleClick = () => {
-    onClick?.(task);
-  };
-
-  return (
-    <Card
-      className="h-full transition-shadow hover:shadow-md cursor-pointer"
-      onClick={handleClick}
-    >
+  const content = (
+    <Card className="h-full transition-shadow hover:shadow-md cursor-pointer">
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
           <CardTitle className="text-lg line-clamp-2">{task.title}</CardTitle>
@@ -36,4 +30,10 @@ export function TaskCard({ task, onClick }: TaskCardProps) {
       </CardContent>
     </Card>
   );
+
+  if (onClick) {
+    return <div onClick={() => onClick(task)}>{content}</div>;
+  }
+
+  return <Link href={`/tasks/${task.id}`}>{content}</Link>;
 }

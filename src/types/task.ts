@@ -4,6 +4,11 @@
 export type TaskStatus = "to-do" | "in-progress" | "review" | "completed";
 
 /**
+ * Task priority levels
+ */
+export type TaskPriority = "low" | "medium" | "high";
+
+/**
  * Main task interface matching API response
  */
 export interface Task {
@@ -12,6 +17,10 @@ export interface Task {
   description: string;
   status: TaskStatus;
   createdAt: string; // ISO 8601 date string
+  priority?: TaskPriority; // Optional priority field
+  dueDate?: string; // Optional due date (ISO 8601)
+  assignee?: string; // Optional assignee name
+  tags?: string[]; // Optional tags
 }
 
 /**

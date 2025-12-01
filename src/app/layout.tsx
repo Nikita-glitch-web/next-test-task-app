@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/providers/QueryProvider";
-import { Header } from "@/components/layout/Header";
+import { ToastProvider } from "@/providers/ToastProvider";
+import { Sidebar } from "@/components/layout/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TaskFlow - Task Management",
-  description: "Modern task management application built with Next.js",
+  title: "TESTAPP - Task Management",
+  description: "Modern task management application",
 };
 
 export default function RootLayout({
@@ -30,9 +31,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1 py-8">{children}</main>
+          <ToastProvider />
+          <div className="min-h-screen bg-gray-50">
+            <Sidebar />
+            <main className="md:pl-64 w-full">
+              <div className="py-4 px-3 sm:py-6 sm:px-6 lg:px-8">
+                {children}
+              </div>
+            </main>
           </div>
         </QueryProvider>
       </body>
