@@ -44,7 +44,7 @@ export function TaskBoardCard({ task }: TaskBoardCardProps) {
   };
   return (
     <Link href={`/tasks/${task.id}`}>
-      <Card className="hover:shadow-md transition-shadow cursor-pointer">
+      <Card className="hover:shadow-md transition-shadow cursor-pointer border-border bg-card">
         <CardHeader className="pb-2 sm:pb-3">
           <div className="flex items-start justify-between">
             <h4 className="text-xs sm:text-sm font-semibold line-clamp-2 pr-2">
@@ -58,7 +58,7 @@ export function TaskBoardCard({ task }: TaskBoardCardProps) {
                   className="h-5 w-5 sm:h-6 sm:w-6 p-0"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <MoreVertical className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400" />
+                  <MoreVertical className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -74,7 +74,7 @@ export function TaskBoardCard({ task }: TaskBoardCardProps) {
           </div>
         </CardHeader>
         <CardContent className="pb-3 sm:pb-4">
-          <p className="text-[10px] sm:text-xs text-gray-500 line-clamp-2 mb-2 sm:mb-3">
+          <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2 mb-2 sm:mb-3">
             {task.description}
           </p>
 
@@ -90,10 +90,10 @@ export function TaskBoardCard({ task }: TaskBoardCardProps) {
               {[1, 2, 3].map((i) => (
                 <Avatar
                   key={i}
-                  className="h-5 w-5 sm:h-6 sm:w-6 border-2 border-white"
+                  className="h-5 w-5 sm:h-6 sm:w-6 border-2 border-card"
                 >
-                  <AvatarFallback className="bg-gray-300 text-[8px] sm:text-[10px]">
-                    <span className="text-gray-600">U{i}</span>
+                  <AvatarFallback className="bg-muted text-[8px] sm:text-[10px]">
+                    <span className="text-muted-foreground">U{i}</span>
                   </AvatarFallback>
                 </Avatar>
               ))}

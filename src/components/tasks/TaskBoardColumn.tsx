@@ -15,7 +15,7 @@ export function TaskBoardColumn({ title, count, tasks }: TaskBoardColumnProps) {
     <div className="flex flex-col">
       {/* Column Header */}
       <div className="flex items-center justify-between mb-3 sm:mb-4">
-        <h3 className="text-xs sm:text-sm font-medium text-gray-700">
+        <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">
           {title} ({count})
         </h3>
       </div>
@@ -31,7 +31,7 @@ export function TaskBoardColumn({ title, count, tasks }: TaskBoardColumnProps) {
           Array.from({ length: 3 - tasks.length }).map((_, i) => (
             <div
               key={`placeholder-${i}`}
-              className="border-2 border-dashed border-gray-200 rounded-lg h-24 sm:h-32 bg-white"
+              className="border-2 border-dashed border-border rounded-lg h-24 sm:h-32 bg-card"
             />
           ))}
       </div>

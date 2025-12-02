@@ -9,6 +9,7 @@ import { TaskProgressBar } from "@/components/tasks/TaskProgressBar";
 import { TaskSortSelect, SortOption } from "@/components/tasks/TaskSortSelect";
 import { LoadingState } from "@/components/common/LoadingState";
 import { ErrorState } from "@/components/common/ErrorState";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { TaskStatus } from "@/types/task";
 import { useToast } from "@/hooks/useToast";
 
@@ -103,18 +104,22 @@ export default function Home() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Page Header */}
-      <div>
-        <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-          My Tasks
-        </h1>
-        <p className="text-xs sm:text-sm text-gray-500 mt-1">
-          {new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-semibold">My Tasks</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+            {new Date().toLocaleDateString("en-US", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
+        </div>
+        {/* Theme Toggle for Mobile */}
+        <div className="md:hidden">
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* Progress Bar */}
