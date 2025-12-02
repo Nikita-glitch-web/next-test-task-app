@@ -15,6 +15,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
+import { TaskPriorityBadge } from "./TaskPriorityBadge";
 
 interface TaskBoardCardProps {
   task: Task;
@@ -77,6 +78,13 @@ export function TaskBoardCard({ task }: TaskBoardCardProps) {
           <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2 mb-2 sm:mb-3">
             {task.description}
           </p>
+
+          {/* Priority Badge */}
+          {task.priority && (
+            <div className="mb-2 sm:mb-3">
+              <TaskPriorityBadge priority={task.priority} size="sm" />
+            </div>
+          )}
 
           {/* Bottom Section */}
           <div className="flex items-center justify-between">

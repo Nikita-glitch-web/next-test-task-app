@@ -7,10 +7,12 @@ import { TaskSearch } from "@/components/tasks/TaskSearch";
 import { TaskStatusTabs } from "@/components/tasks/TaskStatusTabs";
 import { TaskProgressBar } from "@/components/tasks/TaskProgressBar";
 import { TaskSortSelect, SortOption } from "@/components/tasks/TaskSortSelect";
+import { TaskStatsCards } from "@/components/tasks/TaskStatsCards";
+import { TaskPriorityFilter } from "@/components/tasks/TaskPriorityFilter";
 import { LoadingState } from "@/components/common/LoadingState";
 import { ErrorState } from "@/components/common/ErrorState";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { TaskStatus } from "@/types/task";
+import { TaskStatus, TaskPriority } from "@/types/task";
 import { useToast } from "@/hooks/useToast";
 
 export default function Home() {
@@ -20,6 +22,9 @@ export default function Home() {
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus | "all">(
     "all"
   );
+  const [selectedPriority, setSelectedPriority] = useState<
+    TaskPriority | "all"
+  >("all");
   const [sortBy, setSortBy] = useState<SortOption>("date-newest");
   const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
 
@@ -55,6 +60,12 @@ export default function Home() {
       filtered = filtered.filter((task) => task.status === selectedStatus);
     }
 
+    // Filter by priority
+    if (selectedPriority !== "all") {
+      filtered = filtered.filter((task) => task.priority === selectedPriority);
+    }
+
+    // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
@@ -64,6 +75,7 @@ export default function Home() {
       );
     }
 
+    // Sort tasks
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
         case "date-newest":
@@ -79,10 +91,10 @@ export default function Home() {
         case "title-desc":
           return b.title.localeCompare(a.title);
         case "priority":
-          const priorityOrder = { high: 3, medium: 2, low: 1 };
+          const priorityOrder = { urgent: 4, high: 3, medium: 2, low: 1 };
           return (
-            (priorityOrder[b.priority || "low"] || 0) -
-            (priorityOrder[a.priority || "low"] || 0)
+            (priorityOrder[b.priority || "medium"] || 0) -
+            (priorityOrder[a.priority || "medium"] || 0)
           );
         default:
           return 0;
@@ -90,7 +102,7 @@ export default function Home() {
     });
 
     return sorted;
-  }, [tasks, selectedStatus, searchQuery, sortBy]);
+  }, [tasks, selectedStatus, selectedPriority, searchQuery, sortBy]);
 
   const taskCounts = useMemo(() => {
     if (!tasks) return undefined;
@@ -122,17 +134,18 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Task Statistics Cards */}
+      {tasks && tasks.length > 0 && <TaskStatsCards tasks={tasks} />}
+
       {/* Progress Bar */}
       {tasks && tasks.length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-4">
-            Overall Progress
-          </h2>
+        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
+          <h2 className="text-sm font-semibold mb-4">Overall Progress</h2>
           <TaskProgressBar tasks={tasks} />
         </div>
       )}
 
-      {/* Search Bar and Sort */}
+      {/* Search Bar, Sort, and Priority Filter */}
       {tasks && tasks.length > 0 && (
         <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
           <TaskSearch
@@ -159,17 +172,33 @@ export default function Home() {
               toast.success("Sort applied", sortLabels[value]);
             }}
           />
+          <TaskPriorityFilter
+            value={selectedPriority}
+            onChange={(priority) => {
+              setSelectedPriority(priority);
+              const priorityLabels = {
+                all: "All Priorities",
+                urgent: "Urgent Priority",
+                high: "High Priority",
+                medium: "Medium Priority",
+                low: "Low Priority",
+              };
+              toast.info("Priority filter", priorityLabels[priority]);
+            }}
+          />
           {(searchQuery ||
             selectedStatus !== "all" ||
+            selectedPriority !== "all" ||
             sortBy !== "date-newest") && (
             <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedStatus("all");
+                setSelectedPriority("all");
                 setSortBy("date-newest");
                 toast.success("Filters cleared", "Showing all tasks");
               }}
-              className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 whitespace-nowrap"
+              className="text-xs sm:text-sm text-muted-foreground hover:text-foreground whitespace-nowrap"
             >
               Clear filters
             </button>

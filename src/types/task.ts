@@ -6,7 +6,7 @@ export type TaskStatus = "to-do" | "in-progress" | "review" | "completed";
 /**
  * Task priority levels
  */
-export type TaskPriority = "low" | "medium" | "high";
+export type TaskPriority = "low" | "medium" | "high" | "urgent";
 
 /**
  * Main task interface matching API response
