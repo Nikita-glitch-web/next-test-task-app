@@ -29,22 +29,26 @@ export function TaskPriorityBadge({
     low: {
       icon: Minus,
       label: "Low",
-      className: "bg-green-100 text-green-700 border-green-200 dark:bg-green-900 dark:text-green-300 dark:border-green-700",
+      className:
+        "bg-green-100 text-green-700 border-green-200 dark:bg-green-900 dark:text-green-300 dark:border-green-700",
     },
     medium: {
       icon: ArrowUp,
       label: "Medium",
-      className: "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300 dark:border-yellow-700",
+      className:
+        "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300 dark:border-yellow-700",
     },
     high: {
       icon: AlertCircle,
       label: "High",
-      className: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900 dark:text-orange-300 dark:border-orange-700",
+      className:
+        "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900 dark:text-orange-300 dark:border-orange-700",
     },
     urgent: {
       icon: AlertTriangle,
       label: "Urgent",
-      className: "bg-red-100 text-red-700 border-red-200 dark:bg-red-900 dark:text-red-300 dark:border-red-700",
+      className:
+        "bg-red-100 text-red-700 border-red-200 dark:bg-red-900 dark:text-red-300 dark:border-red-700",
     },
   };
 

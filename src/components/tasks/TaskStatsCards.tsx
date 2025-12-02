@@ -18,7 +18,8 @@ export function TaskStatsCards({ tasks }: TaskStatsCardsProps) {
     const inProgress = tasks.filter((t) => t.status === "in-progress").length;
     const review = tasks.filter((t) => t.status === "review").length;
     const toDo = tasks.filter((t) => t.status === "to-do").length;
-    const completionRate = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const completionRate =
+      total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return {
       total,
