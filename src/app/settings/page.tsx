@@ -19,7 +19,6 @@ export default function SettingsPage() {
       return;
     }
 
-    // Simulate API call with promise toast
     const savePromise = new Promise((resolve) => {
       setTimeout(() => resolve({ name }), 1500);
     });
