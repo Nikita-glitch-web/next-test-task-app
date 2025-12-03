@@ -1,9 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-/**
- * Hook to check if media query matches
- * @param query - Media query string (e.g., '(min-width: 768px)')
- */
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
 
@@ -21,7 +17,6 @@ export function useMediaQuery(query: string): boolean {
   return matches;
 }
 
-// Predefined breakpoint hooks
 export const useIsMobile = () => useMediaQuery("(max-width: 768px)");
 export const useIsTablet = () =>
   useMediaQuery("(min-width: 769px) and (max-width: 1024px)");

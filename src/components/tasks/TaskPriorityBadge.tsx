@@ -9,10 +9,6 @@ interface TaskPriorityBadgeProps {
   className?: string;
 }
 
-/**
- * Task Priority Badge Component
- * Displays a colored badge with icon based on task priority
- */
 export function TaskPriorityBadge({
   priority = "medium",
   size = "sm",

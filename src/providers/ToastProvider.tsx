@@ -2,10 +2,6 @@
 
 import { Toaster } from "sonner";
 
-/**
- * Toast Provider Component
- * Wraps the app with Sonner toast notifications
- */
 export function ToastProvider() {
   return (
     <Toaster

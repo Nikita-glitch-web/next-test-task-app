@@ -3,10 +3,6 @@
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-/**
- * Theme Provider Component
- * Wraps the app with next-themes for dark mode support
- */
 export function ThemeProvider({
   children,
   ...props

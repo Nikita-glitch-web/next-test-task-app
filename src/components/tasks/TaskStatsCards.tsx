@@ -7,10 +7,6 @@ interface TaskStatsCardsProps {
   tasks: Task[];
 }
 
-/**
- * Task Statistics Cards Component
- * Displays overview statistics of tasks in card format
- */
 export function TaskStatsCards({ tasks }: TaskStatsCardsProps) {
   const stats = useMemo(() => {
     const total = tasks.length;
