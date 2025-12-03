@@ -22,12 +22,10 @@ export function TaskList({ tasks }: TaskListProps) {
   const filteredAndSortedTasks = useMemo(() => {
     let filtered = tasks;
 
-    // Filter by status
     if (selectedStatus !== "all") {
       filtered = filtered.filter((task) => task.status === selectedStatus);
     }
 
-    // Sort
     const sorted = [...filtered].sort((a, b) => {
       switch (selectedSort) {
         case "date-asc":

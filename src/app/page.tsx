@@ -28,7 +28,6 @@ export default function Home() {
   const [sortBy, setSortBy] = useState<SortOption>("date-newest");
   const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
 
-  // Show success toast when tasks load successfully (only once)
   useEffect(() => {
     if (
       tasks &&
@@ -42,30 +41,25 @@ export default function Home() {
     }
   }, [tasks, isLoading, error, hasShownSuccessToast, toast]);
 
-  // Show error toast when there's an error
   useEffect(() => {
     if (error) {
       toast.error("Failed to load tasks", error.message);
     }
   }, [error, toast]);
 
-  // Filter, search, and sort tasks
   const filteredTasks = useMemo(() => {
     if (!tasks) return [];
 
     let filtered = tasks;
 
-    // Filter by status
     if (selectedStatus !== "all") {
       filtered = filtered.filter((task) => task.status === selectedStatus);
     }
 
-    // Filter by priority
     if (selectedPriority !== "all") {
       filtered = filtered.filter((task) => task.priority === selectedPriority);
     }
 
-    // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
@@ -75,7 +69,6 @@ export default function Home() {
       );
     }
 
-    // Sort tasks
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
         case "date-newest":
