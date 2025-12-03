@@ -14,27 +14,25 @@ export const TASK_STATUS_COLORS: Record<TaskStatus, string> = {
   completed: "bg-emerald-100 text-emerald-800 border-emerald-300",
 };
 
-// Configuration for status tabs and filters
 export const TASK_STATUS_CONFIG = {
   "to-do": {
     label: "To Do",
-    color: "#6B7280", // gray-500
+    color: "#6B7280",
   },
   "in-progress": {
     label: "In Progress",
-    color: "#3B82F6", // blue-500
+    color: "#3B82F6",
   },
   review: {
     label: "Review",
-    color: "#F59E0B", // amber-500
+    color: "#F59E0B",
   },
   completed: {
     label: "Completed",
-    color: "#10B981", // emerald-500
+    color: "#10B981",
   },
 } as const;
 
-// Figma brand colors
 export const BRAND_COLORS = {
   green: "#4CAF50",
   orange: "#FF9800",
