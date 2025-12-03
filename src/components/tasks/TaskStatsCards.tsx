@@ -14,75 +14,79 @@ interface TaskStatsCardsProps {
 export function TaskStatsCards({ tasks }: TaskStatsCardsProps) {
   const stats = useMemo(() => {
     const total = tasks.length;
-    const completed = tasks.filter((t) => t.status === "completed").length;
-    const inProgress = tasks.filter((t) => t.status === "in-progress").length;
-    const review = tasks.filter((t) => t.status === "review").length;
-    const toDo = tasks.filter((t) => t.status === "to-do").length;
-    const completionRate =
-      total > 0 ? Math.round((completed / total) * 100) : 0;
+    const completed = tasks.filter(
+      (task) => task.status === "completed"
+    ).length;
+    const inProgress = tasks.filter(
+      (task) => task.status === "in-progress"
+    ).length;
+    const review = tasks.filter((task) => task.status === "review").length;
+    const todo = tasks.filter((task) => task.status === "to-do").length;
 
     return {
       total,
       completed,
       inProgress,
       review,
-      toDo,
-      completionRate,
+      todo,
+      completionRate: total > 0 ? Math.round((completed / total) * 100) : 0,
     };
   }, [tasks]);
 
-  const cards = [
+  const statCards = [
     {
-      title: "Total Tasks",
+      label: "Total Tasks",
       value: stats.total,
-      icon: Circle,
-      color: "text-blue-600 dark:text-blue-400",
-      bgColor: "bg-blue-100 dark:bg-blue-900/30",
+      icon: AlertCircle,
+      color: "text-gray-600",
+      bgColor: "bg-gray-100",
     },
     {
-      title: "In Progress",
+      label: "To Do",
+      value: stats.todo,
+      icon: Circle,
+      color: "text-gray-600",
+      bgColor: "bg-gray-100",
+    },
+    {
+      label: "In Progress",
       value: stats.inProgress,
       icon: Clock,
-      color: "text-orange-600 dark:text-orange-400",
-      bgColor: "bg-orange-100 dark:bg-orange-900/30",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
-      title: "In Review",
+      label: "In Review",
       value: stats.review,
       icon: AlertCircle,
-      color: "text-purple-600 dark:text-purple-400",
-      bgColor: "bg-purple-100 dark:bg-purple-900/30",
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
     },
     {
-      title: "Completed",
+      label: "Completed",
       value: stats.completed,
       icon: CheckCircle2,
-      color: "text-green-600 dark:text-green-400",
-      bgColor: "bg-green-100 dark:bg-green-900/30",
+      color: "text-green-600",
+      bgColor: "bg-green-100",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-      {cards.map((card) => {
-        const Icon = card.icon;
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+      {statCards.map((stat) => {
+        const Icon = stat.icon;
         return (
-          <Card
-            key={card.title}
-            className="border-border bg-card hover:shadow-md transition-shadow"
-          >
+          <Card key={stat.label} className="border-border bg-card">
             <CardContent className="p-4 sm:p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-1">
-                    {card.title}
-                  </p>
-                  <p className="text-2xl sm:text-3xl font-bold">{card.value}</p>
-                </div>
-                <div className={`${card.bgColor} p-2 sm:p-3 rounded-lg`}>
-                  <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${card.color}`} />
+              <div className="flex items-center justify-between mb-2">
+                <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                  <Icon className={`h-4 w-4 ${stat.color}`} />
                 </div>
               </div>
+              <p className="text-2xl sm:text-3xl font-bold">{stat.value}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                {stat.label}
+              </p>
             </CardContent>
           </Card>
         );

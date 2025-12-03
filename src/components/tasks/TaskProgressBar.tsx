@@ -102,9 +102,9 @@ export function TaskProgressBar({
           {segments.map((segment) => (
             <div key={segment.label} className="flex items-center gap-1.5">
               <div className={cn("w-3 h-3 rounded-full", segment.color)} />
-              <span className="text-gray-600">
+              <span className="text-muted-foreground">
                 {segment.label}:{" "}
-                <span className="font-semibold text-gray-900">
+                <span className="font-semibold text-foreground">
                   {segment.count}
                 </span>
               </span>
@@ -113,14 +113,14 @@ export function TaskProgressBar({
         </div>
 
         {showPercentage && stats.total > 0 && (
-          <div className="text-gray-900 font-semibold">
+          <div className="text-foreground font-semibold">
             {stats.percentage}% Complete
           </div>
         )}
       </div>
 
       {/* Simple Summary */}
-      <div className="text-xs text-gray-500">
+      <div className="text-xs text-muted-foreground">
         {stats.completed} of {stats.total} tasks completed
       </div>
     </div>

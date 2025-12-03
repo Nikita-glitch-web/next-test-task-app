@@ -65,7 +65,7 @@ export function ThemeToggle() {
           onClick={() => setTheme("system")}
           className={theme === "system" ? "bg-accent" : ""}
         >
-          <Sun className="mr-2 h-4 w-4 opacity-50" />
+          <Sun className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

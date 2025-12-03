@@ -42,7 +42,7 @@ export function TaskDueDate({ dueDate, size = "md" }: TaskDueDateProps) {
         textSize,
         variant === "danger" && "text-red-600",
         variant === "warning" && "text-amber-600",
-        variant === "default" && "text-gray-600"
+        variant === "default" && "text-muted-foreground"
       )}
     >
       <Icon className={iconSize} />

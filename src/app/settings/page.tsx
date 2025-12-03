@@ -39,14 +39,12 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+    <div className="w-full min-h-screen bg-background p-4 sm:p-6 lg:p-8">
       <div className="max-w-5xl mx-auto">
         {/* Page Header */}
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
-            Settings
-          </h1>
-          <p className="text-xs sm:text-sm text-gray-500 mt-1">
+          <h1 className="text-xl sm:text-2xl font-semibold">Settings</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-1">
             {new Date().toLocaleDateString("en-US", {
               weekday: "long",
               day: "numeric",
@@ -59,7 +57,7 @@ export default function SettingsPage() {
         <div className="flex flex-col md:flex-row gap-6 sm:gap-8">
           {/* Left Side - Settings Form */}
           <div className="flex-1">
-            <div className="space-y-4 sm:space-y-6 bg-white p-4 sm:p-6 rounded-lg shadow-sm">
+            <div className="space-y-4 sm:space-y-6 bg-card p-4 sm:p-6 rounded-lg shadow-sm border border-border">
               {/* Name Field */}
               <div>
                 <Label
@@ -94,7 +92,7 @@ export default function SettingsPage() {
                   placeholder="Enter password"
                   className="w-full"
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Your password is between 4 and 12 characters
                 </p>
               </div>
@@ -110,7 +108,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Right Side - Profile Card */}
-          <Card className="w-full md:w-80 shadow-sm">
+          <Card className="w-full md:w-80 shadow-sm border-border">
             <CardContent className="pt-6 text-center">
               <h3 className="text-sm font-medium mb-2">My Profile</h3>
               <button className="text-xs text-[#4CAF50] hover:underline mb-4">
@@ -118,13 +116,13 @@ export default function SettingsPage() {
               </button>
 
               <Avatar className="h-20 w-20 sm:h-24 sm:w-24 mx-auto mb-4">
-                <AvatarFallback className="bg-gray-200 text-xl sm:text-2xl">
-                  <span className="text-gray-600">UR</span>
+                <AvatarFallback className="bg-muted text-xl sm:text-2xl">
+                  <span className="text-muted-foreground">UR</span>
                 </AvatarFallback>
               </Avatar>
 
-              <h4 className="font-medium text-gray-900">User R.</h4>
-              <p className="text-sm text-gray-500 mb-6">
+              <h4 className="font-medium">User R.</h4>
+              <p className="text-sm text-muted-foreground mb-6">
                 Developer in White Digital
               </p>
 

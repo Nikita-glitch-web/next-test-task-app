@@ -28,8 +28,8 @@ export function TaskStatusTabs({
           "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200",
           "border-2 flex items-center gap-2",
           selectedStatus === "all"
-            ? "bg-gray-900 text-white border-gray-900 shadow-sm"
-            : "bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:shadow-sm"
+            ? "bg-foreground text-background border-foreground shadow-sm"
+            : "bg-card text-foreground border-border hover:border-muted-foreground/30 hover:shadow-sm"
         )}
       >
         All Tasks
@@ -38,8 +38,8 @@ export function TaskStatusTabs({
             className={cn(
               "px-2 py-0.5 rounded-full text-xs font-semibold",
               selectedStatus === "all"
-                ? "bg-white/20 text-white"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-background/20 text-background"
+                : "bg-muted text-muted-foreground"
             )}
           >
             {allCount}
@@ -62,7 +62,7 @@ export function TaskStatusTabs({
               "border-2 flex items-center gap-2",
               isSelected
                 ? `text-white border-${config.color}-500 shadow-sm`
-                : `bg-white border-gray-200 hover:border-${config.color}-300 hover:shadow-sm`
+                : `bg-card border-border hover:border-${config.color}-300 hover:shadow-sm`
             )}
             style={
               isSelected
@@ -77,7 +77,7 @@ export function TaskStatusTabs({
                   "px-2 py-0.5 rounded-full text-xs font-semibold",
                   isSelected
                     ? "bg-white/20 text-white"
-                    : "bg-gray-100 text-gray-600"
+                    : "bg-muted text-muted-foreground"
                 )}
               >
                 {count}

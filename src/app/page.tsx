@@ -239,8 +239,8 @@ export default function Home() {
           {filteredTasks.length > 0 ? (
             <TaskBoard tasks={filteredTasks} />
           ) : (
-            <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-              <p className="text-gray-500">
+            <div className="text-center py-12 bg-card rounded-lg border border-border">
+              <p className="text-muted-foreground">
                 {searchQuery
                   ? `No tasks found matching "${searchQuery}"`
                   : "No tasks found for this status"}
